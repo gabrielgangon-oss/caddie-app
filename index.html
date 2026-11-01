@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07140e">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Caddie — log loops, player notes, and what you were paid.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Caddie">
+  <meta name="application-name" content="Caddie">
+  <meta name="format-detection" content="telephone=no">
+  <title>Caddie</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div id="app">
+    <header>
+      <div class="header-bar">
+        <button type="button" id="back-btn" class="icon-btn is-invisible" data-action="back" aria-label="Back">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="brand">Caddie</div>
+        <button type="button" id="settings-btn" class="icon-btn" data-action="settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 3.2v2.1M12 18.7v2.1M3.2 12h2.1M18.7 12h2.1M5.8 5.8l1.5 1.5M16.7 16.7l1.5 1.5M18.2 5.8l-1.5 1.5M7.3 16.7l-1.5 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <nav class="tabbar" aria-label="Primary">
+      <button type="button" class="tab" data-action="tab" data-tab="loop" id="tab-loop">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 20.5V4.5h8.2L12.6 8l1.6 3.5H6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <span>Loop</span>
+      </button>
+      <button type="button" class="tab" data-action="tab" data-tab="recent" id="tab-recent">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.25" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 8.2V12l2.8 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Recent</span>
+      </button>
+      <button type="button" class="tab" data-action="tab" data-tab="roster" id="tab-roster">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="9.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.8 18.2c.7-2.3 2.4-3.4 4.2-3.4s3.5 1.1 4.2 3.4M13.2 14.9c1.3-.5 2.6-.4 3.8.4 1 .7 1.6 1.7 1.9 2.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>Roster</span>
+      </button>
+      <button type="button" class="tab" data-action="tab" data-tab="revenue" id="tab-revenue">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19.5V5.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8.2 15.5v-3.2M12 15.5V8.8M15.8 15.5v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>Revenue</span>
+      </button>
+    </nav>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
