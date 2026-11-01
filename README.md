@@ -24,15 +24,10 @@ Money is stored in cents. There is no sample data; a new install is empty.
 
 ## GitHub Pages
 
-The site is the repository root so Pages can serve `main` directly. `.nojekyll` is included so Jekyll does not rewrite the files. A workflow at `.github/workflows/pages.yml` publishes the same files with GitHub Actions.
-
-If the live URL is not up yet, in the repo on GitHub open **Settings → Pages → Build and deployment** and either:
-
-- set **Source** to **GitHub Actions**, or
-- set **Source** to **Deploy from a branch**, branch **main**, folder **/ (root)**, then save.
+The site is the repository root. Pages is set to **Deploy from a branch**, **main**, **/ (root)**. `.nojekyll` keeps Jekyll from rewriting the files. A push to `main` publishes on its own.
 
 ## Credits
 
-Course photograph: [Alan Hughes](https://commons.wikimedia.org/wiki/File:Southerndown_Golf_Club_-_2nd_green_(geograph_6274427).jpg), *Southerndown Golf Club — 2nd green* (geograph.org.uk, photo 6274427). Licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). The copy in `images/course.jpg` was resized and JPEG-compressed so it can ship with the app (under 300 KB). That image file remains under CC BY-SA 2.0.
+Course photograph: [Alan Hughes](https://commons.wikimedia.org/wiki/File:Southerndown_Golf_Club_-_2nd_green_(geograph_6274427).jpg), *Southerndown Golf Club — 2nd green* (geograph.org.uk, photo 6274427). Licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). The copy in `images/course.jpg` was resized and JPEG-compressed so it can ship with the app (under 300 KB). That image file remains under CC BY-SA 2.0. On screen it sits under a navy blur.
 
-Display type: [Cormorant Garamond](https://github.com/google/fonts/tree/main/ofl/cormorantgaramond) by Christian Thalmann, used under the SIL Open Font License. See `fonts/OFL.txt`.
+Type: [Plus Jakarta Sans](https://github.com/google/fonts/tree/main/ofl/plusjakartasans) by Tokotype, used under the SIL Open Font License. See `fonts/OFL.txt`.

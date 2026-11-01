@@ -1,5 +1,5 @@
 /* Caddie offline cache. Bump CACHE when any precached asset changes. */
-const CACHE = 'caddie-v5';
+const CACHE = 'caddie-v6';
 
 const ASSETS = [
   './',
@@ -10,11 +10,10 @@ const ASSETS = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
-  './fonts/cormorant-garamond-500.woff2',
-  './fonts/cormorant-garamond-600.woff2',
-  './fonts/cormorant-garamond-700.woff2',
-  './fonts/cormorant-garamond-500-italic.woff2',
-  './fonts/cormorant-garamond-600-italic.woff2',
+  './fonts/plus-jakarta-sans-400.woff2',
+  './fonts/plus-jakarta-sans-500.woff2',
+  './fonts/plus-jakarta-sans-600.woff2',
+  './fonts/plus-jakarta-sans-700.woff2',
   './fonts/OFL.txt',
   './images/course.jpg',
 ];

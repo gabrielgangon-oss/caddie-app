@@ -260,6 +260,12 @@
     return loopForm();
   }
 
+  function bagSegment(current) {
+    const item = (type, label) =>
+      `<button type="button" data-action="pick-bag" data-bag="${type}" aria-pressed="${current === type ? 'true' : 'false'}">${label}</button>`;
+    return `<div class="segment bag-segment" role="group" aria-label="Bag type">${item('single', 'Single')}${item('double', 'Double')}${item('forecaddie', 'Forecaddie')}</div>`;
+  }
+
   function loopChooser() {
     const name = cleanName(state.settings.name);
     const dirty = ui.loopDraft && draftDirty(ui.loopDraft);
@@ -269,22 +275,9 @@
       ${name ? `<p class="display-name">${esc(name)}</p>` : ''}
       <p class="lede">What are you carrying today?</p>
       <div class="stack-lg">
-        ${dirty ? '<p class="hint">Pick a bag to continue the loop you started.</p>' : ''}
-        <button type="button" class="bag-card" data-action="pick-bag" data-bag="single">
-          <span class="kicker">One player</span>
-          <strong>Single bag</strong>
-          <span>One bag, one loop, your full attention.</span>
-        </button>
-        <button type="button" class="bag-card" data-action="pick-bag" data-bag="double">
-          <span class="kicker">Two players</span>
-          <strong>Double bag</strong>
-          <span>Two players, two bags.</span>
-        </button>
-        <button type="button" class="bag-card" data-action="pick-bag" data-bag="forecaddie">
-          <span class="kicker">A group</span>
-          <strong>Forecaddie</strong>
-          <span>Walk ahead. Choose 2 to 12 players.</span>
-        </button>
+        ${dirty ? '<p class="hint">Choose a bag to continue the loop you started.</p>' : ''}
+        ${bagSegment(null)}
+        <p class="hint">Single is one player. Double is two bags. Forecaddie is a group of 2 to 12.</p>
         ${dirty ? '<button type="button" class="btn-text" data-action="discard-draft">Discard this loop</button>' : ''}
       </div>`;
   }
@@ -294,13 +287,8 @@
     return `
       <form id="loop-form" autocomplete="off" novalidate>
         <div class="card">
-          <div class="row-between">
-            <div>
-              <p class="kicker">${d.id ? 'Editing' : 'New loop'}</p>
-              <strong class="course-name">${esc(bagLabel(d.bagType))}</strong>
-            </div>
-            <button type="button" class="btn-text" data-action="change-bag" style="width:auto">Change</button>
-          </div>
+          <p class="kicker">${d.id ? 'Editing' : 'Bag'}</p>
+          ${bagSegment(d.bagType)}
           ${d.error ? `<div class="alert" id="form-error" role="alert">${esc(d.error)}</div>` : ''}
           <label class="field">
             <span class="field-label">Date</span>
@@ -736,14 +724,15 @@
     const current = new Date().getFullYear() === year ? new Date().getMonth() : -1;
     const labels = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
     const full = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    let shapes = '';
+    let shapes = `<line x1="${padL}" y1="${padT + innerH}" x2="${w - padR}" y2="${padT + innerH}" stroke="rgba(255,255,255,0.16)" stroke-width="1"></line>`;
     for (let i = 0; i < 12; i++) {
       const bh = Math.max(2, Math.round((rev[i] / max) * (innerH - 4)));
       const x = padL + i * (barW + gap);
       const y = padT + innerH - bh;
-      const fill = i === current ? '#f3e2bc' : '#c6a15e';
-      const opacity = rev[i] === 0 ? 0.35 : 1;
-      shapes += `<rect x="${x.toFixed(2)}" y="${y}" width="${barW.toFixed(2)}" height="${bh}" rx="3" fill="${fill}" fill-opacity="${opacity}"><title>${full[i]}: ${formatMoney(rev[i])}</title></rect>`;
+      const fill = i === current ? '#f5f7fb' : '#c5d0e0';
+      const opacity = rev[i] === 0 ? 0.22 : (i === current ? 1 : 0.55);
+      const radius = Math.min(7, barW / 2);
+      shapes += `<rect x="${x.toFixed(2)}" y="${y}" width="${barW.toFixed(2)}" height="${bh}" rx="${radius}" fill="${fill}" fill-opacity="${opacity}"><title>${full[i]}: ${formatMoney(rev[i])}</title></rect>`;
       shapes += `<text class="chart-label" x="${(x + barW / 2).toFixed(2)}" y="${h - 8}" text-anchor="middle">${labels[i]}</text>`;
     }
     return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="Monthly earnings for ${year}">${shapes}</svg>`;
@@ -838,7 +827,7 @@
       </div>
       <h2 class="subhead">Danger</h2>
       <button type="button" class="btn-danger" data-action="clear-data">Clear all data</button>
-      <p class="credit">Course photograph by <a href="https://commons.wikimedia.org/wiki/File:Southerndown_Golf_Club_-_2nd_green_(geograph_6274427).jpg" target="_blank" rel="noopener">Alan Hughes</a>, Southerndown Golf Club — 2nd green. Licensed CC BY-SA 2.0. Resized and compressed for offline use. Display type is Cormorant Garamond, used under the SIL Open Font License.</p>`;
+      <p class="credit">Course photograph by <a href="https://commons.wikimedia.org/wiki/File:Southerndown_Golf_Club_-_2nd_green_(geograph_6274427).jpg" target="_blank" rel="noopener">Alan Hughes</a>, Southerndown Golf Club — 2nd green. Licensed CC BY-SA 2.0. Resized and compressed for offline use. Type is Plus Jakarta Sans, used under the SIL Open Font License.</p>`;
   }
 
   function missing(text) {
