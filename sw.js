@@ -1,5 +1,5 @@
 /* Caddie offline cache. Bump CACHE when any precached asset changes. */
-const CACHE = 'caddie-v6';
+const CACHE = 'caddie-v7';
 
 const ASSETS = [
   './',
